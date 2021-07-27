@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    var count = 0
+    var runnable: Runnable? = null
+    //var textView:TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +26,18 @@ class MainActivity : AppCompatActivity() {
 
 
         btnStart.setOnClickListener {
+            handler.removeCallbacksAndMessages(null)
             for (i in 0..10) {
-                handler.postDelayed(Runnable {
-                    kotlin.run {
-                        textView.text = i.toString()
-                    }
-                }, (1000 * i).toLong())
+                handler.postDelayed(
+                    Runnable {
+                        kotlin.run {
+                            textView.text = i.toString()
+                        }
+                    }, (1000 * i).toLong())
             }
         }
+
     }
+
+
 }
